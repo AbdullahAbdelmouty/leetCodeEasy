@@ -66,12 +66,31 @@
 //     return result
 // };
 // 13.Roman to Integer
-const input = "III"
+const input = "LVIII"
+// "MMCDXXV" = 1000 + 1000 + 100 + 500 + 10 + 10 + 5
 var romanToInt = function(s) {
-    // console.log(s);
+    let romanObj = {
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000
+    }
     let arr = s.split("")
-    
-    console.log(arr);
+    let integer = 0;
+    let prValue = 0;
+    for (let index = arr.length -1; index >= 0; index--) {
+        const value = romanObj[arr[index]];
+        if(value<prValue){
+            integer-=value
+        } else{
+            integer+=value;
+        }     
+        prValue = value
+    }
+    return integer;
 };
 
-romanToInt(input)
+console.log(romanToInt(input));
